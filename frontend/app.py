@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-from frontend.utils import generate_keypair
+from utils import generate_keypair  
 
 st.title("🛰️ NSBS 네트워크 공유 플랫폼")
 
