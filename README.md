@@ -15,3 +15,19 @@ streamlit run frontend/app.py \
     --server.address 0.0.0.0 \
     --server.sslCertFile backend/certs/fullchain.pem \
     --server.sslKeyFile backend/certs/privkey.pem****
+
+
+cd C:\Users\rlaxo\NSBSplatform
+python -m uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000 ^
+ --ssl-keyfile backend/certs/privkey.pem ^
+ --ssl-certfile backend/certs/fullchain.pem
+cd C:\Users\rlaxo\NSBSplatform\frontend
+
+python -m streamlit run app.py ^
+ --server.port 8501 ^
+ --server.address 0.0.0.0 ^
+ --server.enableCORS false ^
+ --server.enableXsrfProtection false ^
+ --server.enableWebsocketCompression false ^
+ --server.sslCertFile ../backend/certs/fullchain.pem ^
+ --server.sslKeyFile ../backend/certs/privkey.pem
