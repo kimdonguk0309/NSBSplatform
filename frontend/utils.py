@@ -1,6 +1,7 @@
-import subprocess
+from nacl import public, encoding
 
 def generate_keypair():
-    private_key = subprocess.check_output("wg genkey", shell=True).decode().strip()
-    public_key = subprocess.check_output(f"echo {private_key} | wg pubkey", shell=True).decode().strip()
-    return {"private_key": private_key, "public_key": public_key}
+    private_key = public.PrivateKey.generate()
+    private_key_str = private_key.encode(encoder=encoding.Base64Encoder).decode()
+    public_key_str = private_key.public_key.encode(encoder=encoding.Base64Encoder).decode()
+    return {"private_key": private_key_str, "public_key": public_key_str}
